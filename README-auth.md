@@ -1,4 +1,4 @@
-# Iwas authentication and billing pages
+# Clavis authentication and billing pages
 
 Added pages:
 

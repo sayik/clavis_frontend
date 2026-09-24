@@ -1,6 +1,6 @@
-# Iwas Medical Scribe UI
+# Clavis Medical Scribe UI
 
-Nuxt + Vue + Tailwind implementation of the supplied Iwas Medical Scribe dashboard concept.
+Nuxt + Vue + Tailwind implementation of the supplied Clavis Medical Scribe dashboard concept.
 
 ## Run
 

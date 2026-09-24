@@ -1,4 +1,4 @@
-# Iwas Medical Scribe — MVP integration contract
+# Clavis Medical Scribe — MVP integration contract
 
 This frontend deliberately does **not** hard-code common diagnoses, patients, notifications, AI models, statistics, or treatment templates. It expects a backend API and shows loading/empty/error states when that API is unavailable.
 
