@@ -3,15 +3,7 @@
     <div class="mx-auto flex min-h-screen max-w-[1440px]">
       <aside class="hidden w-[44%] flex-col justify-between border-r border-[#e2e6e3] bg-[#eef1ee] px-12 py-10 lg:flex">
         <div>
-          <NuxtLink to="/" class="inline-flex items-center gap-3">
-            <span class="grid h-11 w-11 place-items-center rounded-2xl bg-[#17332f] text-white shadow-sm">
-              <Cross class="h-6 w-6" :stroke-width="2.2" />
-            </span>
-            <span>
-              <span class="block text-[21px] font-semibold tracking-[-0.02em]">Clavis</span>
-              <span class="block text-xs text-[#65716e]">Medical Scribe</span>
-            </span>
-          </NuxtLink>
+          <ClavisLogo />
 
           <div class="mt-28 max-w-lg">
             <p class="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-[#61706c]">AI-assisted clinical workflow</p>
