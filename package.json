@@ -5,7 +5,10 @@
   "scripts": {
     "dev": "nuxt dev",
     "build": "nuxt build",
-    "preview": "nuxt preview"
+    "preview": "nuxt preview",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "eslint ."
   },
   "dependencies": {
     "@nuxtjs/tailwindcss": "latest",
@@ -15,7 +18,14 @@
     "vue-router": "latest"
   },
   "devDependencies": {
+    "@nuxt/eslint": "^1.17.0",
+    "@nuxt/test-utils": "^4.3.2",
+    "@vue/test-utils": "^2.5.1",
+    "eslint": "^10.11.0",
+    "eslint-plugin-vue": "^10.11.1",
+    "happy-dom": "^20.14.5",
     "prettier": "^3.9.9",
-    "prettier-plugin-tailwindcss": "^0.8.1"
+    "prettier-plugin-tailwindcss": "^0.8.1",
+    "vitest": "^5.0.3"
   }
 }

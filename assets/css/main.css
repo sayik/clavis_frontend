@@ -39,64 +39,64 @@ textarea {
     @apply inline-flex h-11 items-center justify-center gap-2 rounded-xl border border-[#dce2df] bg-white px-4 text-sm font-medium text-[#273532] transition hover:border-[#bcc9c4] hover:bg-[#fafbfa];
   }
   .sidebar {
-    @apply relative z-50 w-[267px] shrink-0 border-r border-[#e5e8e6] bg-white min-h-screen px-5 py-5 flex flex-col transition-all duration-200;
+    @apply relative z-50 flex min-h-screen w-[267px] shrink-0 flex-col border-r border-[#e5e8e6] bg-white px-5 py-5 transition-all duration-200;
   }
   .sidebar-collapsed {
     @apply w-[78px] px-3;
   }
   .nav-item {
-    @apply w-full flex items-center gap-4 px-4 py-3.5 rounded-xl text-left transition text-[#263432] hover:bg-[#f3f5f3];
+    @apply flex w-full items-center gap-4 rounded-xl px-4 py-3.5 text-left text-[#263432] transition hover:bg-[#f3f5f3];
   }
   .nav-active {
     @apply bg-[#18312e] text-white shadow-sm hover:bg-[#18312e];
   }
   .collapse-btn {
-    @apply w-8 h-8 items-center justify-center rounded-lg text-[#65716e] hover:bg-[#f1f4f2];
+    @apply h-8 w-8 items-center justify-center rounded-lg text-[#65716e] hover:bg-[#f1f4f2];
   }
   .brand-mark {
-    @apply relative w-9 h-9 shrink-0 text-[#17322e];
+    @apply relative h-9 w-9 shrink-0 text-[#17322e];
   }
   .brand-mark span:first-child {
-    @apply absolute left-[13px] top-0 w-3.5 h-9 rounded-sm bg-current;
+    @apply absolute left-[13px] top-0 h-9 w-3.5 rounded-sm bg-current;
   }
   .brand-mark span:last-child {
-    @apply absolute top-[13px] left-0 h-3.5 w-9 rounded-sm bg-current;
+    @apply absolute left-0 top-[13px] h-3.5 w-9 rounded-sm bg-current;
   }
   .dashboard-grid {
-    @apply grid grid-cols-[minmax(0,1fr)_330px] gap-4 relative;
+    @apply relative grid grid-cols-[minmax(0,1fr)_330px] gap-4;
   }
   .right-is-collapsed {
     @apply grid-cols-[minmax(0,1fr)];
   }
   .diagnosis-panel {
-    @apply bg-white border border-[#e5e8e6] rounded-xl shadow-[0_8px_28px_rgba(20,35,33,.045)] h-[calc(100vh-92px)] min-h-[650px] p-4 flex flex-col;
+    @apply flex h-[calc(100vh-92px)] min-h-[650px] flex-col rounded-xl border border-[#e5e8e6] bg-white p-4 shadow-[0_8px_28px_rgba(20,35,33,.045)];
   }
   .right-expand {
-    @apply absolute -right-2 top-4 w-8 h-8 rounded-full border border-[#dce2df] bg-white items-center justify-center shadow-sm;
+    @apply absolute -right-2 top-4 h-8 w-8 items-center justify-center rounded-full border border-[#dce2df] bg-white shadow-sm;
   }
   .search-field {
-    @apply h-11 border border-[#e5e8e6] rounded-xl bg-white flex items-center px-3 gap-2;
+    @apply flex h-11 items-center gap-2 rounded-xl border border-[#e5e8e6] bg-white px-3;
   }
   .search-field input {
-    @apply outline-none w-full text-sm bg-transparent;
+    @apply w-full bg-transparent text-sm outline-none;
   }
   .diagnosis-row {
-    @apply w-full flex items-center justify-between py-3 border-b border-[#eef0ee] text-left text-[13px] hover:bg-[#f7f9f7] px-2 rounded;
+    @apply flex w-full items-center justify-between rounded border-b border-[#eef0ee] px-2 py-3 text-left text-[13px] hover:bg-[#f7f9f7];
   }
   .utility {
-    @apply min-h-[102px] border border-[#e5e8e6] rounded-xl bg-white flex flex-col items-center justify-center gap-1.5 text-center hover:bg-[#f7f9f7] transition;
+    @apply flex min-h-[102px] flex-col items-center justify-center gap-1.5 rounded-xl border border-[#e5e8e6] bg-white text-center transition hover:bg-[#f7f9f7];
   }
   .utility b {
-    @apply text-[10px] sm:text-[11px] font-medium;
+    @apply text-[10px] font-medium sm:text-[11px];
   }
   .utility span {
     @apply text-[9px] text-slate-400;
   }
   .modal-backdrop {
-    @apply fixed inset-0 z-[100] bg-[#13221f]/30 backdrop-blur-[2px] p-3 sm:p-6 flex items-center justify-center;
+    @apply fixed inset-0 z-[100] flex items-center justify-center bg-[#13221f]/30 p-3 backdrop-blur-[2px] sm:p-6;
   }
   .modal-card {
-    @apply w-full max-h-[92vh] overflow-hidden rounded-2xl border border-[#e1e6e3] bg-white shadow-[0_24px_80px_rgba(20,35,33,.18)];
+    @apply max-h-[92vh] w-full overflow-hidden rounded-2xl border border-[#e1e6e3] bg-white shadow-[0_24px_80px_rgba(20,35,33,.18)];
   }
   .icon-btn {
     @apply inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-[#5d6b67] hover:bg-[#f1f4f2];
@@ -114,7 +114,7 @@ textarea {
     @apply rounded-xl border border-[#ead8d4] bg-[#fff7f5] px-4 py-3 text-sm text-[#8a4c42];
   }
   .patient-result {
-    @apply w-full flex items-center gap-3 rounded-xl border border-[#e6e9e7] p-3 hover:bg-[#f8faf8] transition;
+    @apply flex w-full items-center gap-3 rounded-xl border border-[#e6e9e7] p-3 transition hover:bg-[#f8faf8];
   }
   .avatar {
     @apply grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[#e0edf5] text-sm font-semibold text-[#31627b];

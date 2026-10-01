@@ -32,9 +32,7 @@
         Clavis
       </span>
 
-      <span
-        class="mt-1 block text-[12px] font-normal text-[#65716e]"
-      >
+      <span class="mt-1 block text-[12px] font-normal text-[#65716e]">
         Medical Scribe
       </span>
     </span>

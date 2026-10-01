@@ -1,7 +1,94 @@
 <script setup lang="ts">
 import { Search, X } from 'lucide-vue-next'
-const props=defineProps<{title:string;subtitle:string;endpoint:string;placeholder:string}>()
-const emit=defineEmits<{close:[]}>();const api=useApi();const q=ref('');const items=ref<any[]>([]);const loading=ref(false);const error=ref('')
-async function search(){if(!q.value.trim())return;loading.value=true;error.value='';try{items.value=await api<any[]>(props.endpoint,{query:{q:q.value.trim()}})}catch(e:any){error.value=e?.data?.message||'Search service is unavailable.';items.value=[]}finally{loading.value=false}}
+const props = defineProps<{
+  title: string
+  subtitle: string
+  endpoint: string
+  placeholder: string
+}>()
+const emit = defineEmits<{ close: [] }>()
+const api = useApi()
+const q = ref('')
+const items = ref<any[]>([])
+const loading = ref(false)
+const error = ref('')
+async function search() {
+  if (!q.value.trim()) return
+  loading.value = true
+  error.value = ''
+  try {
+    items.value = await api<any[]>(props.endpoint, {
+      query: { q: q.value.trim() },
+    })
+  } catch (e: any) {
+    error.value = e?.data?.message || 'Search service is unavailable.'
+    items.value = []
+  } finally {
+    loading.value = false
+  }
+}
 </script>
-<template><div class="modal-backdrop" @click.self="emit('close')"><div class="modal-card max-w-2xl"><div class="flex items-start justify-between border-b border-[#e6e9e7] p-6"><div><p class="eyebrow">Clinical tools</p><h2 class="modal-title">{{title}}</h2><p class="modal-subtitle">{{subtitle}}</p></div><button class="icon-btn" @click="emit('close')"><X :size="19"/></button></div><div class="p-6"><div class="flex gap-2"><div class="search-field flex-1"><Search :size="18"/><input v-model="q" @keyup.enter="search" :placeholder="placeholder"/></div><button class="primary-btn" @click="search">Search</button></div><p v-if="error" class="mt-3 alert-error">{{error}}</p><div v-if="loading" class="py-12 text-center text-sm text-slate-500">Searching…</div><div v-else-if="items.length" class="mt-5 divide-y divide-[#eef0ee] rounded-xl border border-[#e5e8e6]"><div v-for="item in items" :key="item.id || item.code || item.name" class="p-4"><div class="font-medium">{{item.name || item.title}}</div><div v-if="item.description" class="mt-1 text-sm text-slate-500">{{item.description}}</div><div v-if="item.code" class="mt-1 text-[11px] text-slate-400">{{item.code}}</div></div></div><div v-else-if="q&&!error" class="py-12 text-center text-sm text-slate-500">No results.</div><div v-else class="mt-8 rounded-2xl border border-dashed border-[#dce2df] p-10 text-center text-sm text-slate-500">Search results are fetched live from the clinical backend.</div></div></div></div></template>
+<template>
+  <div class="modal-backdrop" @click.self="emit('close')">
+    <div class="modal-card max-w-2xl">
+      <div
+        class="flex items-start justify-between border-b border-[#e6e9e7] p-6"
+      >
+        <div>
+          <p class="eyebrow">Clinical tools</p>
+          <h2 class="modal-title">{{ title }}</h2>
+          <p class="modal-subtitle">{{ subtitle }}</p>
+        </div>
+        <button class="icon-btn" @click="emit('close')">
+          <X :size="19" />
+        </button>
+      </div>
+      <div class="p-6">
+        <div class="flex gap-2">
+          <div class="search-field flex-1">
+            <Search :size="18" /><input
+              v-model="q"
+              @keyup.enter="search"
+              :placeholder="placeholder"
+            />
+          </div>
+          <button class="primary-btn" @click="search">Search</button>
+        </div>
+        <p v-if="error" class="alert-error mt-3">{{ error }}</p>
+        <div v-if="loading" class="py-12 text-center text-sm text-slate-500">
+          Searching…
+        </div>
+        <div
+          v-else-if="items.length"
+          class="mt-5 divide-y divide-[#eef0ee] rounded-xl border border-[#e5e8e6]"
+        >
+          <div
+            v-for="item in items"
+            :key="item.id || item.code || item.name"
+            class="p-4"
+          >
+            <div class="font-medium">{{ item.name || item.title }}</div>
+            <div v-if="item.description" class="mt-1 text-sm text-slate-500">
+              {{ item.description }}
+            </div>
+            <div v-if="item.code" class="mt-1 text-[11px] text-slate-400">
+              {{ item.code }}
+            </div>
+          </div>
+        </div>
+        <div
+          v-else-if="q && !error"
+          class="py-12 text-center text-sm text-slate-500"
+        >
+          No results.
+        </div>
+        <div
+          v-else
+          class="mt-8 rounded-2xl border border-dashed border-[#dce2df] p-10 text-center text-sm text-slate-500"
+        >
+          Search results are fetched live from the clinical backend.
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
