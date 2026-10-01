@@ -3,6 +3,7 @@
 The public landing page is `/` and the existing doctor workspace is now `/dashboard`.
 
 Routes:
+
 - `/` — Clavis landing page
 - `/login` — doctor login
 - `/signup` — account creation

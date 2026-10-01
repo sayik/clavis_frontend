@@ -1,7 +1,80 @@
 <script setup lang="ts">
 import { Bot, Check, X } from 'lucide-vue-next'
-const emit=defineEmits<{close:[]}>();const api=useApi();const models=ref<any[]>([]);const selected=ref('');const loading=ref(true);const error=ref('')
-onMounted(async()=>{try{models.value=await api<any[]>('/ai/models');selected.value=models.value.find(m=>m.default)?.id||models.value[0]?.id||''}catch(e:any){error.value=e?.data?.message||'AI models could not be loaded.'}finally{loading.value=false}})
-async function selectModel(id:string){selected.value=id;try{await api('/ai/models/selection',{method:'PUT',body:{model_id:id}})}catch{}}
+const emit = defineEmits<{ close: [] }>()
+const api = useApi()
+const models = ref<any[]>([])
+const selected = ref('')
+const loading = ref(true)
+const error = ref('')
+onMounted(async () => {
+  try {
+    models.value = await api<any[]>('/ai/models')
+    selected.value =
+      models.value.find((m) => m.default)?.id || models.value[0]?.id || ''
+  } catch (e: any) {
+    error.value = e?.data?.message || 'AI models could not be loaded.'
+  } finally {
+    loading.value = false
+  }
+})
+async function selectModel(id: string) {
+  selected.value = id
+  try {
+    await api('/ai/models/selection', { method: 'PUT', body: { model_id: id } })
+  } catch {}
+}
 </script>
-<template><div class="modal-backdrop" @click.self="emit('close')"><div class="modal-card max-w-3xl"><div class="flex items-start justify-between border-b border-[#e6e9e7] p-6"><div><p class="eyebrow">AI configuration</p><h2 class="modal-title">AI Models</h2><p class="modal-subtitle">Models available to your account and their intended use.</p></div><button class="icon-btn" @click="emit('close')"><X :size="19"/></button></div><div class="p-6"><div v-if="loading" class="py-12 text-center text-sm text-slate-500">Loading models…</div><p v-else-if="error" class="alert-error">{{error}}</p><div v-else class="grid gap-3 sm:grid-cols-2"><button v-for="model in models" :key="model.id" @click="selectModel(model.id)" :class="['model-card',selected===model.id?'model-selected':'']"><div class="flex items-start justify-between"><span class="model-icon"><Bot :size="19"/></span><span v-if="selected===model.id" class="model-check"><Check :size="14"/></span></div><div class="mt-4 text-left font-semibold">{{model.name}}</div><p class="mt-1 text-left text-sm leading-5 text-slate-500">{{model.description}}</p><div v-if="model.specialty" class="mt-3 text-left text-[11px] font-medium text-[#315c53]">{{model.specialty}}</div></button></div></div></div></div></template>
+<template>
+  <div class="modal-backdrop" @click.self="emit('close')">
+    <div class="modal-card max-w-3xl">
+      <div
+        class="flex items-start justify-between border-b border-[#e6e9e7] p-6"
+      >
+        <div>
+          <p class="eyebrow">AI configuration</p>
+          <h2 class="modal-title">AI Models</h2>
+          <p class="modal-subtitle">
+            Models available to your account and their intended use.
+          </p>
+        </div>
+        <button class="icon-btn" @click="emit('close')">
+          <X :size="19" />
+        </button>
+      </div>
+      <div class="p-6">
+        <div v-if="loading" class="py-12 text-center text-sm text-slate-500">
+          Loading models…
+        </div>
+        <p v-else-if="error" class="alert-error">{{ error }}</p>
+        <div v-else class="grid gap-3 sm:grid-cols-2">
+          <button
+            v-for="model in models"
+            :key="model.id"
+            @click="selectModel(model.id)"
+            :class="[
+              'model-card',
+              selected === model.id ? 'model-selected' : '',
+            ]"
+          >
+            <div class="flex items-start justify-between">
+              <span class="model-icon"><Bot :size="19" /></span
+              ><span v-if="selected === model.id" class="model-check"
+                ><Check :size="14"
+              /></span>
+            </div>
+            <div class="mt-4 text-left font-semibold">{{ model.name }}</div>
+            <p class="mt-1 text-left text-sm leading-5 text-slate-500">
+              {{ model.description }}
+            </p>
+            <div
+              v-if="model.specialty"
+              class="mt-3 text-left text-[11px] font-medium text-[#315c53]"
+            >
+              {{ model.specialty }}
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
